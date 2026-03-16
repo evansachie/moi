@@ -483,6 +483,23 @@ a:hover {
   user-select: none;
 }
 
+.contact-open-to {
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.contact-open-to__label {
+  margin-bottom: 0.55rem;
+}
+
+.contact-open-to__text {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 36ch;
+}
+
 .block--links .home-links {
   margin-bottom: 0;
 }
@@ -515,4 +532,109 @@ a:hover {
   color: var(--text-muted);
   line-height: 1.5;
   margin-top: 0.15rem;
+}
+
+#gh-heatmap-wrap {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  padding: 0.9rem 0.95rem 0.75rem;
+}
+
+.activity-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.activity-head .label {
+  margin-bottom: 0;
+}
+
+.activity-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.activity-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.gh-heatmap-total {
+  margin: 0 0 0.6rem;
+}
+
+.gh-heatmap-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+.gh-heatmap-link svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gh-heatmap-link:hover {
+  color: var(--accent);
+}
+
+.gh-heatmap-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.gh-heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.gh-heatmap-legend-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.gh-heatmap-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.gh-heatmap-tooltip {
+  position: fixed;
+  z-index: 2000;
+  pointer-events: none;
+  background: #2f363d;
+  color: #f6f8fa;
+  border-radius: 8px;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.gh-heatmap-tooltip.is-visible {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .activity-link {
+    font-size: 0.8125rem;
+  }
 }
