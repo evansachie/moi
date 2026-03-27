@@ -22,7 +22,8 @@ Open `index.html` in a browser.
 - `contact.html` — Contact and socials
 - `style.css` — Styles
 - `script.js` — Footer time, smooth scroll
-- `images/` — Banner, favicon
+- `heatmap.js` - GitHub Heatmap
+- `images/` — Banner, project images
 - `assets/` — Resume PDF
 
 ## Contact
