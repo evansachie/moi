@@ -534,6 +534,67 @@ a:hover {
   margin-top: 0.15rem;
 }
 
+.work-row--preview {
+  cursor: default;
+}
+
+.project-preview {
+  display: none;
+}
+
+.project-float-card {
+  position: fixed;
+  z-index: 500;
+  pointer-events: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: 320px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.project-float-card.is-visible {
+  opacity: 1;
+}
+
+.project-float-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (hover: none) {
+  .work-row--preview {
+    cursor: pointer;
+  }
+
+  .project-preview {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+
+  .work-row--preview.is-expanded .project-preview {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 0.75rem;
+  }
+
+  .project-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+  }
+}
+
 #gh-heatmap-wrap {
   border: 1px solid var(--border);
   border-radius: 12px;
