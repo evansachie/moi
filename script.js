@@ -57,15 +57,18 @@
 
     var offsetX = 24;
     var offsetY = -20;
+    var pad = 12;
 
     function reposition(e) {
-      var x = e.clientX + offsetX;
-      var y = e.clientY + offsetY;
       var cardW = card.offsetWidth;
       var cardH = card.offsetHeight;
-      if (x + cardW > window.innerWidth - 12) x = e.clientX - cardW - offsetX;
-      if (y + cardH > window.innerHeight - 12) y = window.innerHeight - cardH - 12;
-      if (y < 8) y = 8;
+      var x = e.clientX + offsetX;
+      var y = e.clientY + offsetY;
+      if (x + cardW > window.innerWidth - pad) {
+        x = e.clientX - cardW - offsetX;
+      }
+      x = Math.max(pad, Math.min(x, window.innerWidth - cardW - pad));
+      y = Math.max(pad, Math.min(y, window.innerHeight - cardH - pad));
       card.style.left = x + "px";
       card.style.top = y + "px";
     }
@@ -90,6 +93,20 @@
 
     cardImg.addEventListener("error", function () {
       card.classList.remove("is-visible");
+    });
+  })();
+
+  (function () {
+    if ("startViewTransition" in document) return;
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var href = a.getAttribute("href");
+        if (!href || href.charAt(0) === "#" || a.target === "_blank" || href.indexOf("://") !== -1 || href.indexOf("mailto:") !== -1) return;
+        e.preventDefault();
+        document.body.classList.add("is-leaving");
+        var dest = href;
+        setTimeout(function () { window.location.href = dest; }, 210);
+      });
     });
   })();
 })();
