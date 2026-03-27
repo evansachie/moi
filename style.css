@@ -123,6 +123,17 @@ a:hover {
   pointer-events: none;
 }
 
+.banner-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: radial-gradient(ellipse 85% 65% at 50% 100%, rgba(190, 80, 35, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
 .name-wrap {
   text-align: right;
   margin-bottom: 0.15rem;
@@ -191,6 +202,20 @@ a:hover {
 .emphasis {
   font-style: italic;
   color: var(--text-muted);
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.emphasis.is-typing::after {
+  content: '|';
+  margin-left: 1px;
+  opacity: 0.6;
+  animation: cursor-blink 0.65s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0; }
 }
 
 .main hr {

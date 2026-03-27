@@ -58,6 +58,41 @@
   })();
 
   (function () {
+    var el = document.querySelector(".emphasis");
+    if (!el) return;
+
+    var fullText = el.textContent.trim();
+    el.textContent = "";
+    el.classList.add("is-typing");
+
+    var started = false;
+
+    function startTyping() {
+      if (started) return;
+      started = true;
+      var i = 0;
+      function type() {
+        if (i < fullText.length) {
+          el.textContent = fullText.slice(0, ++i);
+          setTimeout(type, 48);
+        } else {
+          setTimeout(function () {
+            el.classList.remove("is-typing");
+          }, 1000);
+        }
+      }
+      setTimeout(type, 80);
+    }
+
+    var parent = el.closest(".main > *");
+    if (parent) {
+      parent.addEventListener("transitionend", startTyping, { once: true });
+    } else {
+      setTimeout(startTyping, 700);
+    }
+  })();
+
+  (function () {
     var bar = document.getElementById("scrollProgress");
     if (!bar) return;
     window.addEventListener("scroll", function () {
