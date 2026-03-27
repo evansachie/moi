@@ -35,13 +35,15 @@
   }
 
   function formatTooltipText(dateStr, count) {
-    if (count === 0) return "No contributions on " + formatDateLabel(dateStr);
-    return count.toLocaleString() + " contribution" + (count === 1 ? "" : "s") + " on " + formatDateLabel(dateStr);
+    var day = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(new Date(dateStr + "T00:00:00"));
+    var label = day + ", " + formatDateLabel(dateStr);
+    if (count === 0) return "No contributions · " + label;
+    return count.toLocaleString() + " contribution" + (count === 1 ? "" : "s") + " · " + label;
   }
 
   function positionTooltip(tooltipEl, clientX, clientY) {
-    var x = clientX + 14;
-    var y = clientY - 14;
+    var x = clientX + 8;
+    var y = clientY + 12;
 
     tooltipEl.style.left = x + "px";
     tooltipEl.style.top = y + "px";
@@ -57,7 +59,7 @@
   }
 
   function showTooltip(tooltipEl, text, clientX, clientY) {
-    tooltipEl.textContent = text;
+    tooltipEl.innerHTML = text + '<span class="gh-heatmap-tooltip-sub">↗ github.com/' + user + '</span>';
     tooltipEl.classList.add("is-visible");
     positionTooltip(tooltipEl, clientX, clientY);
   }
@@ -283,7 +285,8 @@
     foot.className = "gh-heatmap-foot";
     foot.appendChild(buildLegend());
 
-    wrap.replaceChildren(meta, link, foot, tooltipEl);
+    wrap.replaceChildren(meta, link, foot);
+    document.body.appendChild(tooltipEl);
   } catch (e) {
     wrap.innerHTML = "<p class=\"work-meta\">Could not load activity.</p>";
   }

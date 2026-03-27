@@ -18,6 +18,7 @@
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
     <section class="banner-section" aria-hidden="true">
         <div class="banner-wrap">
             <img src="images/banner.jpg" alt="" class="banner">
@@ -41,7 +42,7 @@
         </div>
         
         <p class="resume-wrap">
-            <a href="./assets/resume.pdf" target="_blank" rel="noopener" class="btn-text">View resume</a>
+            <a href="./assets/resume.pdf" target="_blank" rel="noopener" class="btn-text resume-link">View resume <i class="fas fa-external-link-alt resume-link-icon"></i></a>
         </p>
 
         <div class="block" id="now">
@@ -54,7 +55,7 @@
         </div>
 
         <div class="block">
-            <p class="label">Inspiration</p>
+            <p class="label">Philosophy</p>
             <p class="prose">
                 I build practical software that turns messy workflows into simple, useful tools.
                 I care about clean UX, reliable systems, and shipping products people can use immediately...
@@ -63,7 +64,36 @@
 
         <div class="block block--tech">
             <p class="label">Tech</p>
-            <p class="tech-stack">React · TypeScript · Node · Vue · NestJS · Express · PostgreSQL · Flutter · .NET · Figma</p>
+            <div class="tech-groups">
+                <div class="tech-group">
+                    <span class="tech-group-label">Frontend</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">NextJS</span>
+                        <span class="tech-pill">TypeScript</span>
+                        <span class="tech-pill">Vue</span>
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-group-label">Backend</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Node</span>
+                        <span class="tech-pill">NestJS</span>
+                        <span class="tech-pill">Express</span>
+                        <span class="tech-pill">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-group-label">Tools</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Figma</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">AWS</span>
+                        <span class="tech-pill">Git</span>
+                        <span class="tech-pill">Postman</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <hr>

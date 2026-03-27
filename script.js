@@ -34,6 +34,39 @@
   });
 
   (function () {
+    var items = document.querySelectorAll(".main > *");
+    if (!items.length) return;
+
+    if (!window.IntersectionObserver) {
+      items.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add("is-visible");
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 40, 200) + "ms";
+      observer.observe(el);
+    });
+  })();
+
+  (function () {
+    var bar = document.getElementById("scrollProgress");
+    if (!bar) return;
+    window.addEventListener("scroll", function () {
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
+    }, { passive: true });
+  })();
+
+  (function () {
     var rows = document.querySelectorAll(".work-row--preview");
     if (!rows.length) return;
 
@@ -57,15 +90,18 @@
 
     var offsetX = 24;
     var offsetY = -20;
+    var pad = 12;
 
     function reposition(e) {
-      var x = e.clientX + offsetX;
-      var y = e.clientY + offsetY;
       var cardW = card.offsetWidth;
       var cardH = card.offsetHeight;
-      if (x + cardW > window.innerWidth - 12) x = e.clientX - cardW - offsetX;
-      if (y + cardH > window.innerHeight - 12) y = window.innerHeight - cardH - 12;
-      if (y < 8) y = 8;
+      var x = e.clientX + offsetX;
+      var y = e.clientY + offsetY;
+      if (x + cardW > window.innerWidth - pad) {
+        x = e.clientX - cardW - offsetX;
+      }
+      x = Math.max(pad, Math.min(x, window.innerWidth - cardW - pad));
+      y = Math.max(pad, Math.min(y, window.innerHeight - cardH - pad));
       card.style.left = x + "px";
       card.style.top = y + "px";
     }
@@ -90,6 +126,20 @@
 
     cardImg.addEventListener("error", function () {
       card.classList.remove("is-visible");
+    });
+  })();
+
+  (function () {
+    if ("startViewTransition" in document) return;
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var href = a.getAttribute("href");
+        if (!href || href.charAt(0) === "#" || a.target === "_blank" || href.indexOf("://") !== -1 || href.indexOf("mailto:") !== -1) return;
+        e.preventDefault();
+        document.body.classList.add("is-leaving");
+        var dest = href;
+        setTimeout(function () { window.location.href = dest; }, 210);
+      });
     });
   })();
 })();
