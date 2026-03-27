@@ -34,6 +34,39 @@
   });
 
   (function () {
+    var items = document.querySelectorAll(".main > *");
+    if (!items.length) return;
+
+    if (!window.IntersectionObserver) {
+      items.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add("is-visible");
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 40, 200) + "ms";
+      observer.observe(el);
+    });
+  })();
+
+  (function () {
+    var bar = document.getElementById("scrollProgress");
+    if (!bar) return;
+    window.addEventListener("scroll", function () {
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + "%";
+    }, { passive: true });
+  })();
+
+  (function () {
     var rows = document.querySelectorAll(".work-row--preview");
     if (!rows.length) return;
 

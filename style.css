@@ -60,24 +60,15 @@ a:hover {
 }
 
 .main > * {
-  animation: fadeUp 0.6s ease-out backwards;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
 }
 
-.main > *:nth-child(1) { animation-delay: 0.05s; }
-.main > *:nth-child(2) { animation-delay: 0.1s; }
-.main > *:nth-child(3) { animation-delay: 0.15s; }
-.main > *:nth-child(4) { animation-delay: 0.2s; }
-.main > *:nth-child(5) { animation-delay: 0.25s; }
-.main > *:nth-child(6) { animation-delay: 0.3s; }
-.main > *:nth-child(7) { animation-delay: 0.35s; }
-.main > *:nth-child(8) { animation-delay: 0.4s; }
-.main > *:nth-child(9) { animation-delay: 0.45s; }
-.main > *:nth-child(10) { animation-delay: 0.5s; }
-.main > *:nth-child(11) { animation-delay: 0.55s; }
-.main > *:nth-child(12) { animation-delay: 0.6s; }
-.main > *:nth-child(13) { animation-delay: 0.65s; }
-.main > *:nth-child(14) { animation-delay: 0.7s; }
-.main > *:nth-child(15) { animation-delay: 0.75s; }
+.main > *.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 @keyframes fadeUp {
   from {
@@ -700,6 +691,25 @@ a:hover {
   .activity-link {
     font-size: 0.8125rem;
   }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 300;
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+.gh-heatmap-tooltip-sub {
+  display: block;
+  opacity: 0.5;
+  font-size: 0.6875rem;
+  margin-top: 0.2rem;
 }
 
 @view-transition {
