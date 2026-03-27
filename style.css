@@ -161,6 +161,14 @@ a:hover {
   color: var(--accent);
 }
 
+.intro-line {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 36rem;
+  margin: 0;
+}
+
 .name {
   font-family: "Nunito", sans-serif;
   font-size: clamp(2rem, 5vw, 2.75rem);
