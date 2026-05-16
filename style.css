@@ -793,13 +793,6 @@ body.is-leaving {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 0.2rem 0.55rem;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.tech-pill:hover {
-  color: var(--accent);
-  border-color: rgba(107, 155, 209, 0.35);
-  background: rgba(107, 155, 209, 0.06);
 }
 
 body::after {
