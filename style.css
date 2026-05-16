@@ -291,6 +291,16 @@ a:hover {
   line-height: 1.5;
 }
 
+.work-meta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.work-meta a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
 .tech-stack {
   font-size: 0.875rem;
   color: var(--text-muted);
