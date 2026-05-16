@@ -70,17 +70,6 @@ a:hover {
   transform: translateY(0);
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .banner-section {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -137,14 +126,6 @@ a:hover {
 .name-wrap {
   text-align: right;
   margin-bottom: 0.15rem;
-}
-
-.name-subtext {
-  text-align: right;
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-  margin-top: -0.25rem;
 }
 
 .resume-wrap {
@@ -299,11 +280,6 @@ a:hover {
 .work-meta a:hover {
   color: var(--accent-hover);
   text-decoration: underline;
-}
-
-.tech-stack {
-  font-size: 0.875rem;
-  color: var(--text-muted);
 }
 
 .block-hr {
@@ -713,15 +689,15 @@ a:hover {
   position: fixed;
   z-index: 2000;
   pointer-events: none;
-  background: #2f363d;
-  color: #f6f8fa;
+  background: var(--bg-elevated);
+  color: var(--text);
   border-radius: 8px;
   padding: 0.4rem 0.55rem;
   font-size: 0.8125rem;
   line-height: 1.2;
   white-space: nowrap;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
   opacity: 0;
   transition: opacity 0.12s ease;
 }
@@ -750,7 +726,7 @@ a:hover {
 
 .gh-heatmap-tooltip-sub {
   display: block;
-  opacity: 0.5;
+  color: var(--text-muted);
   font-size: 0.6875rem;
   margin-top: 0.2rem;
 }
