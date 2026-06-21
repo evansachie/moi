@@ -832,3 +832,40 @@ body::after {
   transform: translate(2px, -2px);
   opacity: 1;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-enabled .main > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  .emphasis.is-typing::after {
+    content: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  body.is-leaving {
+    opacity: 1;
+  }
+
+  .resume-link:hover .resume-link-icon {
+    transform: none;
+  }
+}
