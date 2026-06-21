@@ -60,12 +60,15 @@ a:hover {
 }
 
 .main > * {
-  opacity: 0;
-  transform: translateY(14px);
   transition: opacity 0.45s ease-out, transform 0.45s ease-out;
 }
 
-.main > *.is-visible {
+.reveal-enabled .main > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal-enabled .main > *.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -642,6 +645,16 @@ a:hover {
   margin: 0 0 0.6rem;
 }
 
+.gh-heatmap-fallback-text {
+  margin-bottom: 0.45rem;
+}
+
+.gh-heatmap-fallback-link {
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 .gh-heatmap-link {
   display: block;
   width: 100%;
@@ -818,4 +831,41 @@ body::after {
 .resume-link:hover .resume-link-icon {
   transform: translate(2px, -2px);
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-enabled .main > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  .emphasis.is-typing::after {
+    content: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  body.is-leaving {
+    opacity: 1;
+  }
+
+  .resume-link:hover .resume-link-icon {
+    transform: none;
+  }
 }

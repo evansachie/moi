@@ -240,6 +240,21 @@
     return legend;
   }
 
+  function renderFallback() {
+    var message = document.createElement("p");
+    message.className = "work-meta gh-heatmap-fallback-text";
+    message.textContent = "Live contribution data is unavailable right now.";
+
+    var link = document.createElement("a");
+    link.href = "https://github.com/" + user;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.className = "gh-heatmap-fallback-link";
+    link.textContent = "View GitHub profile";
+
+    wrap.replaceChildren(message, link);
+  }
+
   async function fetchJson(url) {
     var res = await fetch(url);
     if (!res.ok) throw new Error("Request failed: " + res.status);
@@ -288,6 +303,6 @@
     wrap.replaceChildren(meta, link, foot);
     document.body.appendChild(tooltipEl);
   } catch (e) {
-    wrap.innerHTML = "<p class=\"work-meta\">Could not load activity.</p>";
+    renderFallback();
   }
 })();

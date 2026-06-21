@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   function formatTime(date) {
     return new Intl.DateTimeFormat("en-US", {
       timeZone: "Africa/Accra",
@@ -28,7 +31,10 @@
       var target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "start",
+        });
       }
     });
   });
@@ -37,10 +43,11 @@
     var items = document.querySelectorAll(".main > *");
     if (!items.length) return;
 
-    if (!window.IntersectionObserver) {
-      items.forEach(function (el) { el.classList.add("is-visible"); });
+    if (prefersReducedMotion || !window.IntersectionObserver) {
       return;
     }
+
+    document.documentElement.classList.add("reveal-enabled");
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -62,6 +69,11 @@
     if (!el) return;
 
     var fullText = el.textContent.trim();
+    if (prefersReducedMotion) {
+      el.textContent = fullText;
+      return;
+    }
+
     el.textContent = "";
     el.classList.add("is-typing");
 
@@ -85,7 +97,7 @@
     }
 
     var parent = el.closest(".main > *");
-    if (parent) {
+    if (parent && document.documentElement.classList.contains("reveal-enabled")) {
       parent.addEventListener("transitionend", startTyping, { once: true });
     } else {
       setTimeout(startTyping, 700);
@@ -165,6 +177,7 @@
   })();
 
   (function () {
+    if (prefersReducedMotion) return;
     if ("startViewTransition" in document) return;
     document.querySelectorAll("a[href]").forEach(function (a) {
       a.addEventListener("click", function (e) {
