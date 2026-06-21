@@ -60,12 +60,15 @@ a:hover {
 }
 
 .main > * {
-  opacity: 0;
-  transform: translateY(14px);
   transition: opacity 0.45s ease-out, transform 0.45s ease-out;
 }
 
-.main > *.is-visible {
+.reveal-enabled .main > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal-enabled .main > *.is-visible {
   opacity: 1;
   transform: translateY(0);
 }

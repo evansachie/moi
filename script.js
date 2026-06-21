@@ -38,9 +38,10 @@
     if (!items.length) return;
 
     if (!window.IntersectionObserver) {
-      items.forEach(function (el) { el.classList.add("is-visible"); });
       return;
     }
+
+    document.documentElement.classList.add("reveal-enabled");
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -85,7 +86,7 @@
     }
 
     var parent = el.closest(".main > *");
-    if (parent) {
+    if (parent && document.documentElement.classList.contains("reveal-enabled")) {
       parent.addEventListener("transitionend", startTyping, { once: true });
     } else {
       setTimeout(startTyping, 700);
